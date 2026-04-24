@@ -3,77 +3,550 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио Дизайнера</title>
+    <title>Портфолио | Junior Web Designer</title>
     <style>
-        /* Здесь стили (CSS) - внешний вид сайта */
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Навигация */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            gap: 30px;
+            flex-wrap: wrap;
         }
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 400px;
-            text-align: center;
-        }
-        h1 { margin-bottom: 10px; font-size: 24px; }
-        p { color: #666; line-height: 1.6; }
-        .role {
-            display: inline-block;
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 5px 10px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .links { margin-top: 30px; }
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px 0;
-            margin-bottom: 10px;
-            background: #2563eb;
-            color: white;
+
+        nav a {
             text-decoration: none;
-            border-radius: 10px;
+            color: #667eea;
+            font-weight: 600;
             transition: 0.3s;
         }
-        .btn:hover { background: #1d4ed8; }
-        .btn.secondary { background: #e5e7eb; color: #333; }
-        .btn.secondary:hover { background: #d1d5db; }
+
+        nav a:hover {
+            color: #764ba2;
+        }
+
+        /* Контейнер */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+        }
+
+        /* Секции */
+        section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 25px;
+            font-size: 28px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* Главная секция */
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .hero-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            border: 5px solid rgba(255,255,255,0.3);
+        }
+
+        .social-links {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+            border: 2px solid white;
+        }
+
+        .social-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        /* Навыки */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        /* Проекты */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .project-body {
+            padding: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Опыт работы / Образование */
+        .timeline-item {
+            margin-bottom: 25px;
+            padding-left: 30px;
+            border-left: 3px solid #667eea;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '●';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            color: #667eea;
+            font-size: 18px;
+        }
+
+        .timeline-item h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .date {
+            color: #667eea;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* Контакты */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .contact-item:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        /* Кнопка CTA */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            section { padding: 25px; }
+            nav ul { gap: 15px; }
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <!-- ВАШЕ ФОТО (можно вставить ссылку на картинку) -->
-        <!-- <img src="ссылка_на_фото.jpg" width="100" style="border-radius: 50%; margin-bottom: 15px;"> -->
-        
-        <h1>Привет, я [Ваше Имя] 👋</h1>
-        <div class="role">Junior Web Designer</div>
-        
-        <p>
-            Создаю удобные интерфейсы в Figma.<br>
-            Понимаю основы HTML/CSS.<br>
-            Ищу первую работу в команде! 🚀
-        </p>
+    <!-- Навигация -->
+    <nav>
+        <ul>
+            <li><a href="#about">Обо мне</a></li>
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#projects">Проекты</a></li>
+            <li><a href="#experience">Опыт</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
 
-        <div class="links">
-            <!-- Замените # на реальные ссылки -->
-            <a href="#" class="btn">Мое портфолио (Behance)</a>
-            <a href="https://t.me/ваш_ник" class="btn secondary">Написать в Telegram</a>
-        </div>
+    <div class="container">
+
+        <!-- Главная секция -->
+        <section class="hero">
+            <div class="hero-avatar">👩‍🎨</div>
+            <h1>Привет! Я [Ваше Имя]</h1>
+            <p class="subtitle">Junior Web Designer & UI/UX Enthusiast</p>
+            <p>Создаю красивые и удобные интерфейсы, которые решают задачи бизнеса</p>
+            
+            <div class="social-links">
+                <a href="https://behance.net/ваш_профиль" class="social-btn" target="_blank">Behance</a>
+                <a href="https://dribbble.com/ваш_профиль" class="social-btn" target="_blank">Dribbble</a>
+                <a href="https://t.me/ваш_ник" class="social-btn" target="_blank">Telegram</a>
+                <a href="mailto:ваш@email.com" class="social-btn">Email</a>
+            </div>
+        </section>
+
+        <!-- Обо мне -->
+        <section id="about">
+            <h2>👤 Обо мне</h2>
+            <p>
+                Я начинающий веб-дизайнер с горячим желанием создавать цифровые продукты, 
+                которые нравятся пользователям. Верю, что хороший дизайн — это не только 
+                красота, но и удобство использования.
+            </p>
+            <br>
+            <p>
+                <strong>Что я умею:</strong> разрабатывать дизайн лендингов, мобильных приложений, 
+                работать с дизайн-системами, создавать прототипы и презентовать свои решения.
+            </p>
+            <br>
+            <p>
+                <strong>Что изучаю сейчас:</strong> основы фронтенд-разработки (HTML/CSS), 
+                анимации в After Effects, принципы UX-исследований.
+            </p>
+            <br>
+            <p>
+                🎯 <strong>Цель:</strong> найти команду, где смогу расти как специалист и 
+                приносить пользу реальным проектам.
+            </p>
+        </section>
+
+        <!-- Навыки -->
+        <section id="skills">
+            <h2>🛠 Мои навыки</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>Figma</h3>
+                    <p>Основной инструмент</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>Adobe Photoshop</h3>
+                    <p>Обработка изображений</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>Adobe Illustrator</h3>
+                    <p>Векторная графика</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>HTML/CSS</h3>
+                    <p>Базовая вёрстка</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>UI/UX Design</h3>
+                    <p>Проектирование</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>Prototyping</h3>
+                    <p>Интерактивные прототипы</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Проекты -->
+        <section id="projects">
+            <h2>📁 Мои проекты</h2>
+            <div class="projects-grid">
+                
+                <!-- Проект 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🛒 Интернет-магазин</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Дизайн интернет-магазина одежды с каталогом, корзиной и личным кабинетом</p>
+                        <div class="project-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">UI Design</span>
+                            <span class="tag">E-commerce</span>
+                        </div>
+                        <a href="#" class="project-link">Смотреть кейс →</a>
+                    </div>
+                </div>
+
+                <!-- Проект 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>📱 Мобильное приложение</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Приложение для отслеживания привычек с геймификацией и статистикой</p>
+                        <div class="project-tags">
+                            <span class="tag">Mobile Design</span>
+                            <span class="tag">iOS</span>
+                            <span class="tag">UX</span>
+                        </div>
+                        <a href="#" class="project-link">Смотреть кейс →</a>
+                    </div>
+                </div>
+
+                <!-- Проект 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🏢 Лендинг для бизнеса</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Одностраничный сайт для юридической компании с формой обратной связи</p>
+                        <div class="project-tags">
+                            <span class="tag">Landing Page</span>
+                            <span class="tag">Web Design</span>
+                            <span class="tag">HTML/CSS</span>
+                        </div>
+                        <a href="#" class="project-link">Смотреть кейс →</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Опыт и образование -->
+        <section id="experience">
+            <h2>📚 Опыт и образование</h2>
+            
+            <div class="timeline-item">
+                <h3>Курсы веб-дизайна</h3>
+                <p class="date">2024 - 2025</p>
+                <p>Прошел интенсивный курс по веб-дизайну и UX/UI. Изучил Figma, принципы композиции, типографику и цветоведение.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Самостоятельное изучение HTML/CSS</h3>
+                <p class="date">2025 - настоящее время</p>
+                <p>Изучаю основы фронтенд-разработки, чтобы лучше понимать процессы создания сайтов и эффективнее работать с разработчиками.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Учебные проекты</h3>
+                <p class="date">2024 - 2025</p>
+                <p>Выполнил 5+ учебных проектов: от лендингов до мобильных приложений. Каждый проект — это новый опыт и рост навыков.</p>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contact">
+            <h2>📬 Давайте работать вместе!</h2>
+            <p style="text-align: center; margin-bottom: 30px;">
+                Я открыт для предложений о работе и интересных проектов. 
+                Не стесняйтесь писать!
+            </p>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <h3>Telegram</h3>
+                    <a href="https://t.me/ваш_ник" target="_blank">@ваш_ник</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/79999999999" target="_blank">+7 (999) 999-99-99</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🎨</div>
+                    <h3>Behance</h3>
+                    <a href="https://behance.net/ваш_профиль" target="_blank">behance.net/ваш_профиль</a>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="mailto:your.email@example.com" class="cta-button">Написать мне</a>
+            </div>
+        </section>
+
     </div>
+
+    <!-- Футер -->
+    <footer>
+        <p>© 2025 [Ваше Имя]. Создано с ❤️ и большим количеством кофе</p>
+        <p style="margin-top: 10px; font-size: 14px;">
+            Хостится на GitHub Pages
+        </p>
+    </footer>
 
 </body>
 </html>
